@@ -5,7 +5,7 @@ import "./libs/IexecODBLibCore.sol";
 import "./libs/IexecODBLibOrders.sol";
 
 
-interface IexecClerkV3
+interface IexecClerk
 {
 	function WORKERPOOL_STAKE_RATIO() external view returns (uint256);
 	function KITTY_RATIO           () external view returns (uint256);

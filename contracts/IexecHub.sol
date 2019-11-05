@@ -5,11 +5,11 @@ import "./IexecClerk.sol";
 import "./libs/IexecODBLibCore.sol";
 
 
-interface IexecHubV3
+interface IexecHub
 {
 	function CONSENSUS_DURATION_RATIO() external view returns (uint256);
 	function REVEAL_DURATION_RATIO   () external view returns (uint256);
-	function iexecclerk              () external view returns (IexecClerkV3);
+	function iexecclerk              () external view returns (IexecClerk);
 	function appregistry             () external view returns (address);
 	function datasetregistry         () external view returns (address);
 	function workerpoolregistry      () external view returns (address);
