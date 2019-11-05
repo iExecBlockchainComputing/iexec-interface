@@ -4,6 +4,7 @@
   "description": "Contract abstraction, interface to iexec-poco",
   "author": "iExec",
   "license": "ISC",
+  "homepage": "https://github.com/iExecBlockchainComputing/PoCo-interface.git#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iExecBlockchainComputing/PoCo-interface.git"
@@ -12,7 +13,13 @@
     "url": "https://github.com/iExecBlockchainComputing/PoCo-interface.git/issues"
   },
   "files": [
-    "/contracts"
+    "/contracts",
+    "/build"
   ],
-  "homepage": "https://github.com/iExecBlockchainComputing/PoCo-interface.git#readme"
+  "scripts": {
+    "build": "truffle compile"
+  },
+  "devDependencies": {
+    "truffle": "^5.0.43"
+  }
 }
