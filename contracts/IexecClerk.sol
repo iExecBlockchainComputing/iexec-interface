@@ -18,10 +18,17 @@ interface IexecClerk
 	function viewConsumed    (bytes32 _id) external view returns (uint256 consumed);
 	function viewPresigned   (bytes32 _id) external view returns (bool presigned);
 
+  function verifySignature(address _identity, bytes32 _hash, bytes calldata _signature) external view returns (bool);
+
 	function signAppOrder       (IexecODBLibOrders.AppOrder        calldata _apporder       ) external returns (bool);
 	function signDatasetOrder   (IexecODBLibOrders.DatasetOrder    calldata _datasetorder   ) external returns (bool);
 	function signWorkerpoolOrder(IexecODBLibOrders.WorkerpoolOrder calldata _workerpoolorder) external returns (bool);
 	function signRequestOrder   (IexecODBLibOrders.RequestOrder    calldata _requestorder   ) external returns (bool);
+
+	function cancelAppOrder       (IexecODBLibOrders.AppOrder        calldata _apporder       ) external returns (bool);
+	function cancelDatasetOrder   (IexecODBLibOrders.DatasetOrder    calldata _datasetorder   ) external returns (bool);
+	function cancelWorkerpoolOrder(IexecODBLibOrders.WorkerpoolOrder calldata _workerpoolorder) external returns (bool);
+	function cancelRequestOrder   (IexecODBLibOrders.RequestOrder    calldata _requestorder   ) external returns (bool);
 
 	function matchOrders(
 		IexecODBLibOrders.AppOrder        calldata _apporder,
@@ -29,11 +36,6 @@ interface IexecClerk
 		IexecODBLibOrders.WorkerpoolOrder calldata _workerpoolorder,
 		IexecODBLibOrders.RequestOrder    calldata _requestorder)
 	external returns (bytes32);
-
-	function cancelAppOrder       (IexecODBLibOrders.AppOrder        calldata _apporder       ) external returns (bool);
-	function cancelDatasetOrder   (IexecODBLibOrders.DatasetOrder    calldata _datasetorder   ) external returns (bool);
-	function cancelWorkerpoolOrder(IexecODBLibOrders.WorkerpoolOrder calldata _workerpoolorder) external returns (bool);
-	function cancelRequestOrder   (IexecODBLibOrders.RequestOrder    calldata _requestorder   ) external returns (bool);
 
 	function viewDealABILegacy_pt1(bytes32 _id)
 	external view returns
