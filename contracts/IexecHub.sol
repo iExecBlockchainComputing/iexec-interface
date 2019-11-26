@@ -1,18 +1,55 @@
-pragma solidity ^0.5.8;
+pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
+import "./IexecRegistries.sol";
 import "./IexecClerk.sol";
 import "./libs/IexecODBLibCore.sol";
 
 
 interface IexecHub
 {
+	/***************************************************************************
+	 *                            CATEGORY MANAGER                             *
+	 ***************************************************************************/
+	event CreateCategory(
+		uint256 catid,
+		string  name,
+		string  description,
+		uint256 workClockTimeRef);
+
+	function viewCategory(
+		uint256 _catid)
+	external view returns (IexecODBLibCore.Category memory category);
+
+	function countCategory()
+	external view returns (uint256 count);
+
+	function createCategory(
+		string  calldata name,
+		string  calldata description,
+		uint256          workClockTimeRef)
+	external returns (uint256);
+
+	/***************************************************************************
+	 *                                IEXECHUB                                 *
+	 ***************************************************************************/
+	event TaskInitialize(bytes32 indexed taskid, address indexed workerpool               );
+	event TaskContribute(bytes32 indexed taskid, address indexed worker, bytes32 hash     );
+	event TaskConsensus (bytes32 indexed taskid,                         bytes32 consensus);
+	event TaskReveal    (bytes32 indexed taskid, address indexed worker, bytes32 digest   );
+	event TaskReopen    (bytes32 indexed taskid                                           );
+	event TaskFinalize  (bytes32 indexed taskid,                         bytes results    );
+	event TaskClaimed   (bytes32 indexed taskid                                           );
+
+	event AccurateContribution(address indexed worker, bytes32 indexed taskid);
+	event FaultyContribution  (address indexed worker, bytes32 indexed taskid);
+
 	function CONSENSUS_DURATION_RATIO() external view returns (uint256);
 	function REVEAL_DURATION_RATIO   () external view returns (uint256);
 	function iexecclerk              () external view returns (IexecClerk);
-	function appregistry             () external view returns (address);
-	function datasetregistry         () external view returns (address);
-	function workerpoolregistry      () external view returns (address);
+	function appregistry             () external view returns (AppRegistry);
+	function datasetregistry         () external view returns (DatasetRegistry);
+	function workerpoolregistry      () external view returns (WorkerpoolRegistry);
 
 	function attachContracts(
 		address _iexecclerkAddress,
