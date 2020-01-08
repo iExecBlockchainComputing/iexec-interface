@@ -20,6 +20,6 @@
     "build": "truffle compile"
   },
   "devDependencies": {
-    "truffle": "^5.0.43"
+    "truffle": "5.1.7"
   }
 }
