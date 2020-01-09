@@ -6,7 +6,7 @@ import "./IexecClerk.sol";
 import "./libs/IexecODBLibCore.sol";
 
 
-interface IexecHub
+interface IexecHubInterface
 {
 	/***************************************************************************
 	 *                            CATEGORY MANAGER                             *
@@ -46,10 +46,10 @@ interface IexecHub
 
 	function CONSENSUS_DURATION_RATIO() external view returns (uint256);
 	function REVEAL_DURATION_RATIO   () external view returns (uint256);
-	function iexecclerk              () external view returns (IexecClerk);
-	function appregistry             () external view returns (AppRegistry);
-	function datasetregistry         () external view returns (DatasetRegistry);
-	function workerpoolregistry      () external view returns (WorkerpoolRegistry);
+	function iexecclerk              () external view returns (IexecClerkInterface);
+	function appregistry             () external view returns (AppRegistryInterface);
+	function datasetregistry         () external view returns (DatasetRegistryInterface);
+	function workerpoolregistry      () external view returns (WorkerpoolRegistryInterface);
 
 	function attachContracts(
 		address _iexecclerkAddress,
