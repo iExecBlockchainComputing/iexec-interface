@@ -1,5 +1,5 @@
 {
-  "name": "@iexec/poco-interface",
+  "name": "@iexec/interface",
   "version": "3.0.35-8",
   "description": "Contract abstraction, interface to iexec-poco",
   "author": "iExec",
