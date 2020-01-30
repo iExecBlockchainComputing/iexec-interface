@@ -1,5 +1,5 @@
 {
-  "name": "iexec-poco-interface",
+  "name": "@iexec/poco-interface",
   "version": "3.0.35-8",
   "description": "Contract abstraction, interface to iexec-poco",
   "author": "iExec",
@@ -20,6 +20,6 @@
     "build": "truffle compile"
   },
   "devDependencies": {
-    "truffle": "5.1.7"
+    "truffle": "^5.1.10"
   }
 }
