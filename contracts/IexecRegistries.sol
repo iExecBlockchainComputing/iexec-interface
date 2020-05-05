@@ -1,7 +1,7 @@
 pragma solidity >0.5.0 <0.7.0;
 
 
-interface App
+interface AppInterface
 {
 	function owner()          external view returns (address);
 	function m_appName()      external view returns (string memory);
@@ -11,7 +11,7 @@ interface App
 	function m_appMREnclave() external view returns (bytes  memory);
 }
 
-interface Dataset
+interface DatasetInterface
 {
 	function owner()              external view returns (address);
 	function m_datasetName()      external view returns (string memory);
@@ -19,7 +19,7 @@ interface Dataset
 	function m_datasetChecksum()  external view returns (bytes32);
 }
 
-interface Workerpool
+interface WorkerpoolInterface
 {
 	event PolicyUpdate(
 		uint256 oldWorkerStakeRatioPolicy,
@@ -38,7 +38,7 @@ interface Workerpool
 	external;
 }
 
-interface AppRegistry
+interface AppRegistryInterface
 {
 	event CreateApp(address indexed appOwner, address app);
 
@@ -53,10 +53,10 @@ interface AppRegistry
 		bytes   calldata _appMultiaddr,
 		bytes32          _appChecksum,
 		bytes   calldata _appMREnclave)
-	external returns (App);
+	external returns (AppInterface);
 }
 
-interface DatasetRegistry
+interface DatasetRegistryInterface
 {
 	event CreateDataset(address indexed datasetOwner, address dataset);
 
@@ -69,10 +69,10 @@ interface DatasetRegistry
 		string  calldata _datasetName,
 		bytes   calldata _datasetMultiaddr,
 		bytes32          _datasetChecksum)
-	external returns (Dataset);
+	external returns (DatasetInterface);
 }
 
-interface WorkerpoolRegistry
+interface WorkerpoolRegistryInterface
 {
 	event CreateWorkerpool(address indexed workerpoolOwner, address indexed workerpool, string workerpoolDescription);
 
@@ -83,5 +83,5 @@ interface WorkerpoolRegistry
 	function createWorkerpool(
 		address          _workerpoolOwner,
 		string  calldata _workerpoolDescription)
-	external returns (Workerpool);
+	external returns (WorkerpoolInterface);
 }

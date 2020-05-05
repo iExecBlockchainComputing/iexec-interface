@@ -5,7 +5,7 @@ import "./libs/IexecODBLibCore.sol";
 import "./libs/IexecODBLibOrders.sol";
 
 
-interface IexecClerk
+interface IexecClerkInterface
 {
 	/***************************************************************************
 	 *                                 ESCROW                                  *
