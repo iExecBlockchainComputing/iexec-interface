@@ -1,11 +1,11 @@
 {
   "name": "@iexec/interface",
-  "version": "3.0.35-8",
+  "version": "5.0.0",
   "description": "Contract abstraction, interface to iexec-poco",
-  "author": "iExec",
-  "license": "ISC",
-  "homepage": "https://github.com/iExecBlockchainComputing/PoCo-interface.git#readme",
-  "repository": {
+  "scripts": {
+    "build": "truffle compile"
+  },
+    "repository": {
     "type": "git",
     "url": "git+https://github.com/iExecBlockchainComputing/PoCo-interface.git"
   },
@@ -16,10 +16,13 @@
     "/contracts",
     "/build"
   ],
-  "scripts": {
-    "build": "truffle compile"
+  "author": "iExec",
+  "license": "ISC",
+  "homepage": "https://github.com/iExecBlockchainComputing/PoCo-interface.git#readme",
+  "dependencies": {
+    "@iexec/poco": "5.0.0"
   },
   "devDependencies": {
-    "truffle": "^5.1.10"
+    "truffle": "5.1.24"
   }
 }

@@ -1,9 +1,18 @@
 pragma solidity >0.5.0 <0.7.0;
 
+import "@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol";
+import "@iexec/poco/contracts/registries/IRegistry.sol";
 
-interface AppInterface
+
+interface IRegistryEntry
 {
-	function owner()          external view returns (address);
+	function owner()                           external view returns (address);
+	function registry()                        external view returns (address);
+	function setName(address, string calldata) external;
+}
+
+interface IApp is IRegistryEntry
+{
 	function m_appName()      external view returns (string memory);
 	function m_appType()      external view returns (string memory);
 	function m_appMultiaddr() external view returns (bytes  memory);
@@ -11,15 +20,14 @@ interface AppInterface
 	function m_appMREnclave() external view returns (bytes  memory);
 }
 
-interface DatasetInterface
+interface IDataset is IRegistryEntry
 {
-	function owner()              external view returns (address);
 	function m_datasetName()      external view returns (string memory);
 	function m_datasetMultiaddr() external view returns (bytes  memory);
 	function m_datasetChecksum()  external view returns (bytes32);
 }
 
-interface WorkerpoolInterface
+interface IWorkerpool is IRegistryEntry
 {
 	event PolicyUpdate(
 		uint256 oldWorkerStakeRatioPolicy,
@@ -27,7 +35,6 @@ interface WorkerpoolInterface
 		uint256 oldSchedulerRewardRatioPolicy,
 		uint256 newSchedulerRewardRatioPolicy);
 
-	function owner()                        external view returns (address);
 	function m_workerpoolDescription()      external view returns (string memory);
 	function m_workerStakeRatioPolicy()     external view returns (uint256);
 	function m_schedulerRewardRatioPolicy() external view returns (uint256);
@@ -38,50 +45,20 @@ interface WorkerpoolInterface
 	external;
 }
 
-interface AppRegistryInterface
+abstract contract IAppRegistry is IRegistry
 {
-	event CreateApp(address indexed appOwner, address app);
-
-	function isRegistered(address _entry                ) external view returns (bool);
-	function viewEntry   (address _owner, uint256 _index) external view returns (address);
-	function viewCount   (address _owner                ) external view returns (uint256);
-
-	function createApp(
-		address          _appOwner,
-		string  calldata _appName,
-		string  calldata _appType,
-		bytes   calldata _appMultiaddr,
-		bytes32          _appChecksum,
-		bytes   calldata _appMREnclave)
-	external returns (AppInterface);
+	function createApp(address, string calldata, string calldata, bytes calldata, bytes32, bytes calldata)
+	external virtual returns (IApp);
 }
 
-interface DatasetRegistryInterface
+abstract contract IDatasetRegistry is IRegistry
 {
-	event CreateDataset(address indexed datasetOwner, address dataset);
-
-	function isRegistered(address _entry                ) external view returns (bool);
-	function viewEntry   (address _owner, uint256 _index) external view returns (address);
-	function viewCount   (address _owner                ) external view returns (uint256);
-
-	function createDataset(
-		address          _datasetOwner,
-		string  calldata _datasetName,
-		bytes   calldata _datasetMultiaddr,
-		bytes32          _datasetChecksum)
-	external returns (DatasetInterface);
+	function createDataset(address, string calldata, bytes calldata, bytes32)
+	external virtual returns (IDataset);
 }
 
-interface WorkerpoolRegistryInterface
+abstract contract IWorkerpoolRegistry is IRegistry
 {
-	event CreateWorkerpool(address indexed workerpoolOwner, address indexed workerpool, string workerpoolDescription);
-
-	function isRegistered(address _entry                ) external view returns (bool);
-	function viewEntry   (address _owner, uint256 _index) external view returns (address);
-	function viewCount   (address _owner                ) external view returns (uint256);
-
-	function createWorkerpool(
-		address          _workerpoolOwner,
-		string  calldata _workerpoolDescription)
-	external returns (WorkerpoolInterface);
+	function createWorkerpool(address, string calldata)
+	external virtual returns (IWorkerpool);
 }
