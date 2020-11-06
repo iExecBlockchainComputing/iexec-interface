@@ -1,6 +1,6 @@
 {
   "name": "@iexec/interface",
-  "version": "5.2.0-rc.0",
+  "version": "5.2.1",
   "description": "Contract abstraction, interface to iexec-poco",
   "scripts": {
     "build": "truffle compile"
@@ -20,9 +20,9 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/iExecBlockchainComputing/PoCo-interface.git#readme",
   "dependencies": {
-    "@iexec/poco": "5.2.0-rc.0"
+    "@iexec/poco": "5.2.1"
   },
   "devDependencies": {
-    "truffle": "5.1.33"
+    "truffle": "5.1.52"
   }
 }
